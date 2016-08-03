@@ -10,9 +10,17 @@ I have left in the original files for the Phaser tutorial and added my own for d
 We'll be working in the wdiTutorial.js for this demonstration. This file is linked to the index.html file, which is blank and will not be modified any further.
 
 For Phaser to work it needs to be run on a server. Let's start our server with python. Once you are in the tutorial directory in your termial type:
+
+Python 2:
 ```
 $ python -m SimpleHTTPServer
 ```
+
+Python 3.x:
+```
+$ python -m http.server
+```
+
 Open a new browser window and go to localhost:8000
 
 Open your wdiTutorial.js file and follow the steps below.
@@ -53,7 +61,7 @@ function create() {
 
 ####Step four:
 Go ahead and delete that star sprite. We'll add more later.
-Under your preload function, lets start adding variables. 
+Under your preload function, lets start adding variables.
 
 ```
 var platforms;
@@ -92,12 +100,12 @@ function create() {
     ledge = platforms.create(-150, 250, 'ground');
 
     ledge.body.immovable = true;
-    
+
 }
 ```
 
 ####Step Five:
-Lets add a player sprite! 
+Lets add a player sprite!
 We need to add another global variable for our player. Let's add one below our platforms variable.
 ```
 var platforms;
@@ -126,11 +134,11 @@ Now back in our create function add the following code to create your player. We
 We need to tell Phaser that our Player can't walk through platforms.
 ```
 function update() {
-    
+
      //  Collide the player and the stars with the platforms
     game.physics.arcade.collide(player, platforms);
 }
-``` 
+```
 
 ####Step Seven:
 Let's create movement for our player! In our update function add the following:
@@ -160,14 +168,14 @@ Let's create movement for our player! In our update function add the following:
 
         player.frame = 4;
     }
-    
+
     //  Allow the player to jump if they are touching the ground.
     if (cursors.up.isDown && player.body.touching.down)
     {
         player.body.velocity.y = -350;
     }
 ```
-Now we'll need one more thing to let our little dude move, we need to tell Phaser what a cursor is. Let's add another global variable for cursor. 
+Now we'll need one more thing to let our little dude move, we need to tell Phaser what a cursor is. Let's add another global variable for cursor.
 ```
 var player;
 var platforms;
@@ -211,7 +219,7 @@ Now let's add some stars in our create function.
     }
 ```
 Oh no! What happened?! They fell through the earth!
-Phaser doesn't know that the stars should collide with our platforms. Let's tell it to do that now. In our update function just below our collision for our player and our platform, let's add one for our stars and platforms as well. 
+Phaser doesn't know that the stars should collide with our platforms. Let's tell it to do that now. In our update function just below our collision for our player and our platform, let's add one for our stars and platforms as well.
 ```
     game.physics.arcade.collide(stars, platforms);
 ```
@@ -227,7 +235,7 @@ Below our collision handlers in our update function, let's add the following.
 Right now we are calling a function called 'collectStar', so we need to create the collectStar function for Phaser to read. Below our update function, let's create a new function.
 ```
 function collectStar (player, star) {
-    
+
     // Removes the star from the screen
     star.kill();
 
@@ -398,7 +406,7 @@ function update() {
 
         player.frame = 4;
     }
-    
+
     //  Allow the player to jump if they are touching the ground.
     if (cursors.up.isDown && player.body.touching.down)
     {
@@ -407,11 +415,11 @@ function update() {
 }
 
 function collectStar (player, star) {
-    
+
     // Removes the star from the screen
     star.kill();
 
-    
+
     //  Add and update the score
     score += 10;
     scoreText.text = 'Score: ' + score;
