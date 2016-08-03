@@ -61,7 +61,7 @@ function create() {
 
 ####Step four:
 Go ahead and delete that star sprite. We'll add more later.
-Under your preload function, lets start adding variables.
+After and outside your preload function, lets start adding variables.
 
 ```
 var platforms;
